@@ -18,6 +18,11 @@ public class ElasticsearchConnection {
 	private Client client;
 
 	/**
+	 * 集群节点配置
+	 */
+	private String nodes;
+
+	/**
 	 * 集群主机地址
 	 */
 	private String clusterHost = "127.0.0.1";
@@ -37,6 +42,27 @@ public class ElasticsearchConnection {
 	 */
 	private boolean transportSniff = true;
 
+	/**
+	 * 构建Elasticsearch Transport
+	 *
+	 * @param nodes          集群节点配置信息
+	 * @param clusterName    集群名称
+	 * @param transportSniff 是否嗅探集群
+	 */
+	public ElasticsearchConnection(String nodes, String clusterName, boolean transportSniff) {
+		this.nodes = nodes;
+		this.clusterName = clusterName;
+		this.transportSniff = transportSniff;
+	}
+
+	/**
+	 * 构建Elasticsearch Transport
+	 *
+	 * @param clusterHost    集群主机地址
+	 * @param clusterPort    集群端口
+	 * @param clusterName    集群名称
+	 * @param transportSniff 是否嗅探集群
+	 */
 	public ElasticsearchConnection(String clusterHost, int clusterPort, String clusterName, boolean transportSniff) {
 		this.clusterHost = clusterHost;
 		this.clusterPort = clusterPort;
@@ -50,6 +76,14 @@ public class ElasticsearchConnection {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public String getNodes() {
+		return nodes;
+	}
+
+	public void setNodes(String nodes) {
+		this.nodes = nodes;
 	}
 
 	public String getClusterHost() {
@@ -88,11 +122,31 @@ public class ElasticsearchConnection {
 		Settings.Builder settingsBuilder = Settings.builder();
 		settingsBuilder.put("cluster.name", clusterName);
 		settingsBuilder.put("client.transport.sniff", transportSniff);
+		PreBuiltTransportClient transportClient = new PreBuiltTransportClient(settingsBuilder.build());
 
-		InetSocketAddress inetSocketAddress = new InetSocketAddress(clusterHost, clusterPort);
+		if (nodes != null && !"".equals(nodes)) {
+			String[] strs = nodes.split(",");
 
-		this.client = new PreBuiltTransportClient(settingsBuilder.build()).
-				addTransportAddress(new TransportAddress(inetSocketAddress));
+			for (String str : strs) {
+				String[] hostStr = str.split(":");
+				String   host    = hostStr[0].trim();
+				int      port    = hostStr.length > 0 ? Integer.parseInt(hostStr[1].trim()) : clusterPort;
+
+				transportClient.addTransportAddress(
+						new TransportAddress(
+								new InetSocketAddress(host, port)
+						)
+				);
+			}
+		} else {
+			transportClient.addTransportAddress(
+					new TransportAddress(
+							new InetSocketAddress(clusterHost, clusterPort)
+					)
+			);
+		}
+
+		this.client = transportClient;
 	}
 
 }
