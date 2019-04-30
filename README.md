@@ -12,31 +12,19 @@ ab-elasticsearch是一个简化版的elasticsearch对象查询库,只提供了�
 <dependency>
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch</artifactId>
-    <version>6.4.2</version>
+    <version>7.0.0</version>
 </dependency>
 
 <dependency>
     <groupId>org.elasticsearch.client</groupId>
     <artifactId>transport</artifactId>
-    <version>6.4.2</version>
-</dependency>
-
-<dependency>
-    <groupId>org.springframework.data</groupId>
-    <artifactId>spring-data-elasticsearch</artifactId>
-    <version>3.0.2.RELEASE</version>
+    <version>7.0.0</version>
 </dependency>
 
 <dependency>
     <groupId>org.springframework.data</groupId>
     <artifactId>spring-data-jpa</artifactId>
-    <version>2.0.2.RELEASE</version>
-</dependency>
-
-<dependency>
-    <groupId>org.springframework.data</groupId>
-    <artifactId>spring-data-commons-core</artifactId>
-    <version>1.4.1.RELEASE</version>
+    <version>1.11.20.RELEASE</version>
 </dependency>
 ```
 需根据实际情况选择对应的依赖版本号。
@@ -162,6 +150,7 @@ public class Documents {
 
 1. 本次更新升级了elasticsearch(6.1.1)和spring-data-elasticsearch(3.0.2.RELEASE)版本为最新版本，移除了原来对spring-data-elasticsearch项目的依赖。
 2. 升级了ElasticSearch版本(6.4.2) 2018-10-11
+3. 升级elasticsearch(7.0.0) 2019-04-30
 
 ## Notice
 

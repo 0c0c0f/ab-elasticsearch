@@ -1,6 +1,7 @@
 package com.anbai.elasticsearch;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.lucene.search.TotalHits;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.SearchHit;
 import org.springframework.data.domain.Page;
@@ -24,13 +25,13 @@ public class SimpleSearchResultMapper {
 	}
 
 	public <T> Page<T> mapResults(SearchResponse response, Class<T> clazz, int pageNum, int pageSize) {
-		long    totalHits = response.getHits().getTotalHits();
-		List<T> results   = new ArrayList<T>();
+		TotalHits totalHits = response.getHits().getTotalHits();
+		List<T>   results   = new ArrayList<T>();
 
 		setSearchHit(response, clazz, results);
 
 //		return new PageImpl<T>(results, PageRequest.of(pageNum, pageSize), totalHits);Spring Data JPA 2.x
-		return new PageImpl<T>(results, new PageRequest(pageNum, pageSize), totalHits);
+		return new PageImpl<T>(results, new PageRequest(pageNum, pageSize), totalHits.value);
 	}
 
 	private <T> void setSearchHit(SearchResponse response, Class<T> clazz, List<T> results) {

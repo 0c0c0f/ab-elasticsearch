@@ -20,10 +20,10 @@ import com.anbai.elasticsearch.bean.Documents;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
-import org.elasticsearch.action.admin.indices.mapping.put.PutMappingResponse;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.common.xcontent.*;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.junit.After;
@@ -130,7 +130,6 @@ public class ElasticsearchTemplateTest {
 		XContentBuilder mapping = jsonBuilder().
 				startObject().
 				startObject(this.type).field("dynamic", true).
-				startObject("_all").field("enabled", false).endObject().
 				startObject("_source").field("enabled", true).endObject().
 				startObject("properties").
 				startObject("url").field("type", "text").endObject().
@@ -141,13 +140,13 @@ public class ElasticsearchTemplateTest {
 				endObject().
 				endObject();
 
-		PutMappingResponse putMappingResponse = this.connection.getClient().admin().indices()
+		AcknowledgedResponse acknowledgedResponse = this.connection.getClient().admin().indices()
 				.preparePutMapping(index)
 				.setType(type)
 				.setSource(mapping)
 				.execute().actionGet();
 
-		return putMappingResponse.isAcknowledged();
+		return acknowledgedResponse.isAcknowledged();
 	}
 
 	/**

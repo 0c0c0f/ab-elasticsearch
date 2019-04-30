@@ -55,7 +55,7 @@ public class ElasticsearchTemplate implements ElasticsearchOperations {
 	 */
 	@Override
 	public long docCount(SearchRequest searchRequest) {
-		return client.search(searchRequest).actionGet().getHits().getTotalHits();
+		return client.search(searchRequest).actionGet().getHits().getTotalHits().value;
 	}
 
 	/**
