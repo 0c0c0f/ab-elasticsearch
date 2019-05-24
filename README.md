@@ -4,6 +4,18 @@ ab-elasticsearch是一个简化版的elasticsearch对象查询库,只提供了�
 
 在这里我只是封装了基本的Spring 和 elasticsearch的集成以及只有基本查询功能的ElasticsearchTemplate。当前版本已支持与Spring Boot共同配置。
 
+## 在Maven项目中使用ab-elasticsearch
+
+`ab-elasticsearch`版本号跟elasticsearch发布一致，目前已支持最新的elasticsearch7.0.0，在pom.xml添加ab-elasticsearch依赖即可。
+
+```xml
+<dependency>
+    <groupId>com.anbai</groupId>
+    <artifactId>ab-elasticsearch</artifactId>
+    <version>7.0.0</version>
+</dependency>
+```
+
 ## ab-elasticsearch 与 Spring 集成
 
 **添加如下pom.xml依赖**
