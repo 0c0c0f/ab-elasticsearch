@@ -20,7 +20,7 @@ ab-elasticsearch是一个简化版的elasticsearch对象查询库,只提供了�
 
 **添加如下pom.xml依赖**
 
-```	
+```xml
 <dependency>
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch</artifactId>
@@ -43,7 +43,7 @@ ab-elasticsearch是一个简化版的elasticsearch对象查询库,只提供了�
 
 **在Spring中配置elasticsearch集群连接和ElasticsearchTemplate**
 
-```
+```xml
 <!-- 加载 elasticsearch 连接 -->
 <bean id="elasticsearchConnection" class="com.anbai.elasticsearch.ElasticsearchConnection"
       init-method="init">
@@ -65,7 +65,7 @@ ab-elasticsearch是一个简化版的elasticsearch对象查询库,只提供了�
 
 在application.properties中添加:
 
-```
+```properties
 # Elasticsearch 配置
 #
 elasticsearch.clusterName=elasticsearch
@@ -76,7 +76,7 @@ elasticsearch.transportSniff=true
 
 然后新建`ElasticsearchConfig.java`
 
-```
+```java
 import com.anbai.elasticsearch.ElasticsearchConnection;
 import com.anbai.elasticsearch.ElasticsearchTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,7 +112,7 @@ public class ElasticsearchConfig {
 
 **使用ElasticsearchTemplate做基本的查询**
 
-```
+```java
 @Resource
 private ElasticsearchTemplate elasticsearchTemplate;
 
@@ -131,7 +131,7 @@ Page对象不是spring-data-elasticsearch中的分页对象，不要搞混了。
 
 **实体层映射**
 
-```
+```java
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
