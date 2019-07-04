@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.anbai</groupId>
     <artifactId>ab-elasticsearch</artifactId>
-    <version>7.0.0</version>
+    <version>7.2.0</version>
     <url>https://github.com/anbai-inc/ab-elasticsearch</url>
     <name>ab-elasticsearch</name>
 
@@ -15,13 +15,13 @@
         <gpg.skip>true</gpg.skip>
         <java.version>1.8</java.version>
         <javadoc.skip>false</javadoc.skip>
-        <jackson.version>2.9.8</jackson.version>
-        <fastjson.version>1.2.57</fastjson.version>
+        <jackson.version>2.9.9</jackson.version>
+        <fastjson.version>1.2.58</fastjson.version>
         <commons-lang.version>2.6</commons-lang.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <elasticsearch.version>7.0.0</elasticsearch.version>
-        <spring-data-jpa.version>1.11.20.RELEASE</spring-data-jpa.version>
+        <elasticsearch.version>7.2.0</elasticsearch.version>
+        <spring-data-jpa.version>2.1.9.RELEASE</spring-data-jpa.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

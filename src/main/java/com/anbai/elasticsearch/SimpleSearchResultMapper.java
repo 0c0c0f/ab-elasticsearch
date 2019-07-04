@@ -30,8 +30,7 @@ public class SimpleSearchResultMapper {
 
 		setSearchHit(response, clazz, results);
 
-//		return new PageImpl<T>(results, PageRequest.of(pageNum, pageSize), totalHits);Spring Data JPA 2.x
-		return new PageImpl<T>(results, new PageRequest(pageNum, pageSize), totalHits.value);
+		return new PageImpl<T>(results, PageRequest.of(pageNum, pageSize), totalHits.value);
 	}
 
 	private <T> void setSearchHit(SearchResponse response, Class<T> clazz, List<T> results) {

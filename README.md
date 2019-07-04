@@ -6,13 +6,13 @@ ab-elasticsearch是一个简化版的elasticsearch对象查询库,只提供了�
 
 ## 在Maven项目中使用ab-elasticsearch
 
-`ab-elasticsearch`版本号跟elasticsearch发布一致，目前已支持最新的elasticsearch7.0.0，在pom.xml添加ab-elasticsearch依赖即可。
+`ab-elasticsearch`版本号跟elasticsearch发布一致，目前已支持最新的elasticsearch7.2.0，在pom.xml添加ab-elasticsearch依赖即可。
 
 ```xml
 <dependency>
     <groupId>com.anbai</groupId>
     <artifactId>ab-elasticsearch</artifactId>
-    <version>7.0.0</version>
+    <version>7.2.0</version>
 </dependency>
 ```
 
@@ -24,13 +24,13 @@ ab-elasticsearch是一个简化版的elasticsearch对象查询库,只提供了�
 <dependency>
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch</artifactId>
-    <version>7.0.0</version>
+    <version>7.2.0</version>
 </dependency>
 
 <dependency>
     <groupId>org.elasticsearch.client</groupId>
     <artifactId>transport</artifactId>
-    <version>7.0.0</version>
+    <version>7.2.0</version>
 </dependency>
 
 <dependency>
@@ -163,9 +163,8 @@ public class Documents {
 1. 本次更新升级了elasticsearch(6.1.1)和spring-data-elasticsearch(3.0.2.RELEASE)版本为最新版本，移除了原来对spring-data-elasticsearch项目的依赖。
 2. 升级了ElasticSearch版本(6.4.2) 2018-10-11
 3. 升级elasticsearch(7.0.0) 2019-04-30
+4. 升级elasticsearch(7.2.0) 2019-07-04
 
 ## Notice
 
 1. 这个项目由我的另一个[javaweb-elasticsearch](https://github.com/javasec/javaweb-elasticsearch)项目更名而来,以后维护的可能主要是此项目.
-
-2. 如果你当前的Spring Data JPA版本是2.x,请修改`com.anbai.elasticsearch.SimpleSearchResultMapper`类的`mapResults`方法。将`return new PageImpl<T>(results, new PageRequest(pageNum, pageSize), totalHits);`替换成`return new PageImpl<T>(results, PageRequest.of(pageNum, pageSize), totalHits);`。
